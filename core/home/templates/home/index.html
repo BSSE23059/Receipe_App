@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block start%}
+    <h1>This is a Home Page</h1>
+
+    <a href="/contact/">Contact</a> | 
+    <a href="/about/">About</a>
+
+
+    <table class="container">
+        <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote</th>
+        </tr>
+
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ people.Name }}</td>
+            <td>{{ people.Age }}</td>
+            <td {% if people.Age < 18 %} style="background-color: red;" {% else %} style="background-color: green;" {% endif %}>
+                {% if people.Age >= 18 %}
+                    👍
+                {% else %}
+                    👎
+                {% endif %}
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <p>
+        {{text | truncatechars:100}}
+    </p>
+
+    <p>
+        {% if "cucumber" in vegetables %}
+            Cucumber is present in the list.
+        {% elif "Tomato" in vegetables %}
+            Tomato is present in the list.
+        {% else %}
+            Cucumber is not present in the list.
+        {% endif %}
+    </p>
+{% endblock %}
+    
